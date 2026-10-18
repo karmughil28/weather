@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Page background changes with the weather (set from Weather.js) */
+body {
+  --sky-a: #27345c;
+  --sky-b: #5f78b0;
+  --panel: rgba(255, 255, 255, 0.14);
+  --panel-line: rgba(255, 255, 255, 0.28);
+  --text: #f6f8ff;
+  --text-soft: rgba(246, 248, 255, 0.78);
+
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  color: var(--text);
+  background: linear-gradient(160deg, var(--sky-a), var(--sky-b)) fixed;
+  transition: background 0.6s ease;
+}
+
+body[data-condition="clear"] {
+  --sky-a: #1f6fb5;
+  --sky-b: #f0b45a;
+}
+body[data-condition="clouds"] {
+  --sky-a: #4a5568;
+  --sky-b: #9aa8bb;
+}
+body[data-condition="rain"] {
+  --sky-a: #1c2a3d;
+  --sky-b: #4f6b87;
+}
+body[data-condition="storm"] {
+  --sky-a: #1a1530;
+  --sky-b: #52497a;
+}
+body[data-condition="snow"] {
+  --sky-a: #6c86a3;
+  --sky-b: #dbe6f2;
+}
+body[data-condition="mist"] {
+  --sky-a: #5b6670;
+  --sky-b: #b8bfc4;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.25rem 1.5rem;
+}
+
+.app-header {
+  width: 100%;
+  max-width: 44rem;
+  margin-bottom: 1.75rem;
+}
+
+.app-header h1 {
+  margin: 0 0 0.35rem;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.app-header p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.app-main {
+  width: 100%;
+  max-width: 44rem;
+  flex: 1;
+}
+
+.app-footer {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+.app-footer a {
+  color: inherit;
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 1.5rem 1rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
+}
